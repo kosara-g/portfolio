@@ -4,7 +4,7 @@
 
 ## About Vale CLI
 
-Vale is a linter for text (prose) that can help you identify issues with spelling,punctuation, wording, style, and more. You can apply off-the-shelf linting rules or customize them and set the severity levels (`error`, `warning`, or `suggestion`).
+Vale is a linter for text, or prose, that can help you identify issues with spelling,punctuation, wording, style, and more. You can apply off-the-shelf linting rules or customize them and set the severity levels (`error`, `warning`, or `suggestion`).
 
 The Vale CLI is a command-line interface that allows you to run Vale on your local machine.
 
