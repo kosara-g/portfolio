@@ -20,5 +20,6 @@ jobs:
         with:
           # Report results for every PR and push
           reporter: github-check
+          files: guides
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
