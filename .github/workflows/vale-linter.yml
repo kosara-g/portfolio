@@ -1,10 +1,7 @@
 name: Vale
 
 # Run this job whenever a Markdown file is changed in a feature branch
-on:
-  push:
-    paths:
-      - '**.md'
+on: [push, pull_request]
 
 jobs:
   Vale:
