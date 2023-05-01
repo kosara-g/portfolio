@@ -94,5 +94,3 @@ $ vale ../repos/portfolio/README.md
 The output from the linter includes information on which package found the issue, which line and character position you should look at, and how to fix it. See an example of what the Vale issue report looks like below.
 
 ![Vale issue report](./media/vale-report.png)
-
-It's a good idea to use Vale regularly. That way, you can build up the habit of spotting issues in the text before they're even submitted for review.
