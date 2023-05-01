@@ -55,9 +55,9 @@ You can find the complete instructions in the [official Vale documentation](http
     BasedOnStyles = Vale, Google
     ```
 
-    `StylesPath` sets the directory where Vale can find any external packages. In this example, that is the `/styles/` directory.
+    `StylesPath` sets the directory where Vale can find any external packages. In this example, that's the `/styles/` directory.
 
-    `MinAlertLevel` determines which issues Vale reports based on their severity - they can be errors, warnings, or suggestions. Setting this parameter to `suggestion` means that **all** issues are reported, down to the suggestions. To see just the errors, you can set it to `error`.
+    `MinAlertLevel` determines which issues Vale reports based on their severity - they can be errors, warnings, or suggestions. Setting this parameter to `suggestion` means that the report includes **all** issues, down to the suggestions. To see just the errors, you can set it to `error`.
 
     The `[*.md]` parameter determines which files to lint, in this example, all Markdown files. To lint any file type, use `[*]` instead.
 

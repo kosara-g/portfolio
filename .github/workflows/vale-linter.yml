@@ -23,6 +23,4 @@ jobs:
           # Report results for every PR and push
           reporter: github-check
         env:
-          # Required, set by GitHub actions automatically:
-          # https://docs.github.com/en/actions/security-guides/a
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
