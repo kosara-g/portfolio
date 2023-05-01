@@ -10,7 +10,7 @@ The Vale CLI is a command-line interface that allows you to run Vale on your loc
 
 ## Installation
 
-The recommended method for installing Vale is through a package manager, in this case, [Homebrew](https://formulae.brew.sh/formula/vale).
+The recommended method for installing Vale is through a package manager, in this example, [Homebrew](https://formulae.brew.sh/formula/vale).
 
 1. Open the Terminal app.
 2. Run this command in the terminal:
@@ -91,6 +91,8 @@ $ cd vale
 $ vale ../repos/portfolio/README.md
 ```
 
-The output from the linter includes which package found the issue, which line and character position you should look at, and how to fix it. See an example of what the Vale issue report looks like below.
+The output from the linter includes information on which package found the issue, which line and character position you should look at, and how to fix it. See an example of what the Vale issue report looks like below.
 
 ![Vale issue report](./media/vale-report.png)
+
+It's a good idea to use Vale regularly. That way, you can build up the habit of spotting issues in the text before they're even submitted for review.
