@@ -3,8 +3,6 @@ name: Vale
 # Run this job whenever a Markdown file is changed in a feature branch
 on:
   push:
-    branches:
-      - '!main'
     paths:
       - '**.md'
 
