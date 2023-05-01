@@ -1,0 +1,25 @@
+name: Vale
+
+# Run this job whenever a Markdown file is changed in a feature branch
+on:
+  push:
+    paths:
+      - '**.md'
+
+jobs:
+  Vale:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Lint documentation
+        uses: errata-ai/vale-action@reviewdog
+        with:
+          # Report results for every PR and push
+          reporter: github-check
+          files: guides
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
