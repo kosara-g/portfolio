@@ -4,7 +4,9 @@
 
 ## About Vale CLI
 
-Vale is a linter for text, or prose, that can help you identify issues with spelling,punctuation, wording, style, and more. You can apply off-the-shelf linting rules or customize them and set the severity levels (`error`, `warning`, or `suggestion`).
+Vale is a linter for text, or prose, that can help you identify issues with spelling, punctuation, wording, style, and more. You can apply off-the-shelf linting rules or customize them and set the severity levels (`error`, `warning`, or `suggestion`).
+
+The linter can spot the more trivial mistakes, allowing peer reviewers to focus on more high-level aspects of the documentation.
 
 The Vale CLI is a command-line interface that allows you to run Vale on your local machine.
 
@@ -89,6 +91,13 @@ To lint a README file in another directory, you can run Vale like this:
 ```sh
 $ cd vale
 $ vale ../repos/portfolio/README.md
+```
+
+To lint an entire project from the same directory as Vale, you can run the following command:
+
+```sh
+$ cd vale
+$ vale .
 ```
 
 The output from the linter includes information on which package found the issue, which line and character position you should look at, and how to fix it. See an example of what the Vale issue report looks like below.
