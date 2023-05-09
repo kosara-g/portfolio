@@ -2,13 +2,38 @@
 
 > :information_source: **Before you begin**: this tutorial assumes you are using *macOS*.
 
+<!-- TOC depthfrom:2 -->
+
+- [Scope of this tutorial](#scope-of-this-tutorial)
+- [About Vale CLI](#about-vale-cli)
+- [Installation](#installation)
+    - [Configure Vale](#configure-vale)
+- [Run Vale](#run-vale)
+- [Further reading](#further-reading)
+
+<!-- /TOC -->
+
+---
+
+## Scope of this tutorial
+
+This overview covers what Vale is, how to install and set it up on the command line, and how to use it to lint documentation.
+
+The instructions cover the default Vale style and the Google style. Feel free to try it out with other styles.
+
+---
+
 ## About Vale CLI
 
-Vale is a linter for text, or prose, that can help you identify issues with spelling, punctuation, wording, style, and more. You can apply off-the-shelf linting rules or customize them and set the severity levels (`error`, `warning`, or `suggestion`).
+**Vale** is a linter for text, or prose, that can help you identify issues with spelling, punctuation, wording, style, and more. You can apply off-the-shelf linting rules or customize them. You can also choose between three severity level: `error`, `warning`, and `suggestion`.
+
+Vale relies on collections of rules, or *packages*, which are Vale-compatible implementations of existing third-party style guides.
 
 The linter can spot the more trivial mistakes, allowing peer reviewers to focus on more high-level aspects of the documentation.
 
-The Vale CLI is a command-line interface that allows you to run Vale on your local machine.
+The *Vale CLI* is a command-line interface that allows you to run Vale on your local machine.
+
+---
 
 ## Installation
 
@@ -21,31 +46,25 @@ The recommended method for installing Vale is through a package manager, in this
 $ brew install vale
 ```
 
-3. Verify that the installation succeeded by running this command:
+3. Verify that the installation succeeded by running this command to view the current version:
     
 ```sh
 $ vale --version
 ```
 
-You should now see the Vale version
-
-You can find the complete instructions in the [official Vale documentation](https://vale.sh/docs/vale-cli/installation/).
-
-### Set up Vale
-
-> :information_source: **Scope of this tutorial**: the instructions cover the default Vale style and the Google style. Feel free to try it out with other styles.
+### Configure Vale
 
 1. You need to create the project structure for the Vale configuration files. In this example, the top-level directory is `/vale`.
+
+The `/styles` subdirectory is where you store the different rule packages, or *styles*. The default style is **Vale**.
+
+`.vale.ini` is the configuration file, where you configure which styles and which severity settings you want to apply.
 
 ```sh
 $ mkdir vale && cd vale
 $ mkdir styles
 $ touch .vale.ini
 ```
-
-The `/styles` directory is where you store the different rule packages, or *styles*. Packages are Vale-compatible implementations of style guides hosted on [Valeʼs Package Hub](https://vale.sh/hub/).
-
-The default style is **Vale**. `.vale.ini` is the configuration file, where you configure which styles and which severity settings you want to apply.
 
 2. Add your configuration to the `.vale.ini` file. You can use the [Vale configuration file generator](https://vale.sh/generator) to pre-fill the file for you.
 
@@ -82,7 +101,9 @@ vale
     └── Google
 ```
 
-### Run Vale
+---
+
+## Run Vale
 
 You can lint single files or entire directories. You **must** run Vale from the **same** directory as your `.vale.ini` configuration file.
 
@@ -103,3 +124,11 @@ $ vale .
 The output from the linter includes information on which package found the issue, which line and character position you should look at, and how to fix it. See an example of what the Vale issue report looks like below.
 
 ![Vale issue report](./media/vale-report.png)
+
+---
+
+## Further reading
+
+You can find the complete Vale CLI reference in the [official Vale documentation](https://vale.sh/docs/).
+
+To see all available Vale packages, visit [Valeʼs Package Hub](https://vale.sh/hub/). 

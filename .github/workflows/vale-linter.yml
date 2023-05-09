@@ -1,6 +1,6 @@
 name: Vale
 
-# Run this job whenever a Markdown file is changed in a feature branch
+# Run this job whenever a Markdown file is changed
 on:
   push:
     paths:
@@ -20,4 +20,4 @@ jobs:
         with:
           # Report results for every PR and push
           reporter: github-check
-          files: guides
+          files: '["guides", "README.md"]'
