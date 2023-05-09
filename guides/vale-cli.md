@@ -21,8 +21,6 @@ This overview covers what Vale is, how to install and set it up on the command l
 
 The instructions cover the default Vale style and the Google style. Feel free to try it out with other styles.
 
----
-
 ## About Vale CLI
 
 **Vale** is a linter for text, or prose, that can help you identify issues with spelling, punctuation, wording, style, and more. You can apply off-the-shelf linting rules or customize them. You can also choose between three severity level: `error`, `warning`, and `suggestion`.
@@ -32,8 +30,6 @@ Vale relies on collections of rules, or *packages*, which are Vale-compatible im
 The linter can spot the more trivial mistakes, allowing peer reviewers to focus on more high-level aspects of the documentation.
 
 The *Vale CLI* is a command-line interface that allows you to run Vale on your local machine.
-
----
 
 ## Installation
 
@@ -100,8 +96,6 @@ vale
 └── styles
     └── Google
 ```
-
----
 
 ## Run Vale
 
