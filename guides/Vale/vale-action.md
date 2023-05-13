@@ -27,7 +27,7 @@ This overview shows you how to set up, configure, and view the results of the Va
 
 ## About the Vale GitHub action
 
-Linting your documentation in a continuous integration pipeline saves you the manual effort of running the linter from the command line. An additional benefit is that you don't have to worry about fetching the latest versions of the packages you're using with `vale sync` because the action downloads these versions by default every time it runs.
+Linting your documentation in a continuous integration pipeline saves you the manual effort of running the linter from the command line. Another benefit is that you don't have to worry about fetching the latest versions of the packages you're using with `vale sync` because the action downloads these versions by default every time it runs.
 
 ## Set up the workflow
 
@@ -106,15 +106,21 @@ jobs:
 
 ## Test the workflow
 
-Push your changes to a feature branch. You should see the workflow run under the *Actions* tab with the name you set in the workflow file, in this case, *Vale*.
+Push your changes to a feature branch and create a pull request. You should see the workflow run under the *Actions* tab with the name you set in the workflow file, in this case, *Vale*.
 
-Click on the latest run in the list to view the full logs. You should see two jobs: one main job created by you in the workflow file (in this example, ???) and one created by the workflow implicitly: ???.
+![The Actions list on GitHub](../media/actions-list.png)
 
-The main job logs show Vale and the Vale packages being installed, as well as the raw output from the linter.
+Open the latest run in the list or see the *Checks* tab in your pull request to view the full logs.
 
-The second job invokes [reviewdog](https://github.com/reviewdog/reviewdog#readme), which reports the results as [annotations](https://github.blog/2018-12-14-introducing-check-runs-and-annotations/) in GitHubʼs UI.
+![Vale GitHub action log](../media/actions-log.png)
 
-To view the issues inline, follow the links to the issues from the reviewdog logs or simply check the *Files changed* tab in your pull request.
+You can expand the collapsed steps in the log to see the raw output from the linter.
+
+The action also invokes [reviewdog](https://github.com/reviewdog/reviewdog#readme), which reports the results as [annotations](https://github.blog/2018-12-14-introducing-check-runs-and-annotations/) in GitHubʼs UI.
+
+You can view the annotations in the *Files changed* tab in your pull request.
+
+![Annotated pull request on GitHub](../media/reviewdog-annotations.png)
 
 ---
 
@@ -124,4 +130,4 @@ If you're new to GitHub actions, you can learn the basics in [this overview of u
 
 You can read more about the Vale action in the [official documentation on GitHub](https://github.com/errata-ai/vale-action).
 
-If your repository contains many documentation files, you should consider [only triggering the workflow whenever a file has changed](https://github.com/tj-actions/changed-files#usage).
+If your repository contains a lot of documentation files, you should consider [running the workflow on the changed files](https://github.com/tj-actions/changed-files#usage).

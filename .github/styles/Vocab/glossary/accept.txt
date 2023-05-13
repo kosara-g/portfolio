@@ -2,3 +2,4 @@ Vale
 CLI
 Redocly
 reviewdog
+GitHub
