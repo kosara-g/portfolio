@@ -1,28 +1,41 @@
 # Vale GitHub action tutorial
 
-Vale can be set up to lint documentation on GitHub automatically with the official [Vale action](https://github.com/errata-ai/vale-action).
+> :information_source: **Assumptions**:
+>
+> - youʼre already familiar with the basics of GitHub actions, otherwise, refer to the *Further reading* section
+> - your GitHub repository has under 50 documentation files (in Markdown, plain text, or YAML)
+> - you work with feature branches and do not push directly to the default branch
 
 <!-- TOC depthfrom:2 -->
 
+- [Scope of this tutorial](#scope-of-this-tutorial)
+- [About the Vale GitHub action](#about-the-vale-github-action)
 - [Set up the workflow](#set-up-the-workflow)
     - [Target project structure](#target-project-structure)
     - [Create your Vale configuration](#create-your-vale-configuration)
     - [Create your workflow file](#create-your-workflow-file)
 - [Test the workflow](#test-the-workflow)
+- [Further reading](#further-reading)
 
 <!-- /TOC -->
 
 ---
 
+## Scope of this tutorial
+
+This overview shows you how to set up, configure, and view the results of the Vale GitHub action.
+
+## About the Vale GitHub action
+
+Linting your documentation in a continuous integration pipeline saves you the manual effort of running the linter from the command line. Another benefit is that you don't have to worry about fetching the latest versions of the packages you're using with `vale sync` because the action downloads these versions by default every time it runs.
+
 ## Set up the workflow
 
-This guide assumes youʼre already familiar with the basics of GitHub actions. If thatʼs not the case, check out [this overview of using workflows](https://docs.github.com/en/actions/using-workflows/about-workflows).
+To get started with the action, you need to create some Vale configuration files and the workflow file for GitHub.
 
 ### Target project structure
 
-At the end of this guide, your repository directory structure should look more or less like this:
-
-Letʼs examine the setup process step by step.
+By following this tutorial, your repository should look have this directory structure at the end:
 
 ```
 my-repo
@@ -40,36 +53,36 @@ my-repo
 └── ...
 ```
 
+The next sections show you how to achieve that.
+
 ### Create your Vale configuration
 
-Create a .vale.ini file at the root of your project and include the following configuration (you can modify it at any point):
+Create the file `.vale.ini` at the *root* of your project and paste the following configuration in the file:
 
 ```
 StylesPath = .github/styles
 MinAlertLevel = warning
 Packages = Google, proselint, write-good
-Vocab = my-domain
+Vocab = glossary
 [*.md]
 BasedOnStyles = Vale, Google, proselint, write-good
 ```
 
-For more information on what the different settings mean, see the [Vale CLI guide](./vale-cli.md).
+For a detailed breakdown of the different settings, see my [Vale CLI guide](./vale-cli.md).
 
-In this instance, my-domain is an arbitrary name to further categorize a set of vocabulary entries to be ignored/flagged by the linter.
+Note that `Vocab` points to an optional directory where add terms that Vale should always ignore or flag, respectively.
 
-Next, create this directory subtree `/styles/Vocab/my-domain` under the directory `.github`. Within `/my-domain` create two files: `accept.txt` for phrases/patterns to be ignored by the linter and `reject.txt` for phrases/patterns that will always be flagged as errors.
+You should see a hidden directory `.github` at the root of your project, if not, create it. In that directory create the following nested directory structure: `/styles/Vocab/glossary`.
 
-For more information on the syntax for these vocabulary files, see the `Vale documentation`.
+Create two files in `/glossary`: `accept.txt` for terms to ignore and `reject.txt` for terms to flag. You don't have to include any terms in these files for now.
+
+Note that you can either add exact terms or use regular expressions in the vocabulary files. For more information, see the [Vale documentation](https://vale.sh/docs/topics/vocab/).
 
 ### Create your workflow file
 
-Assumptions:
+In `.github`, create the directory `/workflows` if it doesnʼt already exist.
 
-- your repo has under 50 documentation files (in Markdown, plain text, or YAML)
-- you work with feature branches and do not push directly to the default branch
-
-Create the subdirectory `/workflows` under `.github`, if it doesnʼt already exist. Create your workflow file, in this example, `lint_docs.yml` under `/workflows` with the following content:
-
+Create the workflow file, for example, `vale-linter.yml`, under `/.github/workflows` with the following content:
 
 ```yml
 name: Vale
@@ -91,16 +104,30 @@ jobs:
           reporter: github-check
 ```
 
-If your repository contains many documentation files, you should consider [only triggering the workflow whenever a file has changed](https://github.com/tj-actions/changed-files#usage).
-
 ## Test the workflow
 
-Push your changes to a feature branch. You should see the workflow run under the *Actions* tab with the name you set in the workflow file, in this case, *Vale*.
+Push your changes to a feature branch and create a pull request. You should see the workflow run under the *Actions* tab with the name you set in the workflow file, in this case, *Vale*.
 
-Click on the latest run in the list to view the full logs. You should see two jobs: one main job created by you in the workflow file (in this example, ???) and one created by the workflow implicitly: ???.
+![The Actions list on GitHub](../media/actions-list.png)
 
-The main job logs show Vale and the Vale packages being installed, as well as the raw output from the linter.
+Open the latest run in the list or see the *Checks* tab in your pull request to view the full logs.
 
-The second job invokes [reviewdog](https://github.com/reviewdog/reviewdog#readme), which reports the results as [annotations](https://github.blog/2018-12-14-introducing-check-runs-and-annotations/) in GitHubʼs UI.
+![Vale GitHub action log](../media/actions-log.png)
 
-To view the issues inline, follow the links to the issues from the reviewdog logs or simply check the *Files changed* tab in your pull request.
+You can expand the collapsed steps in the log to see the raw output from the linter.
+
+The action also invokes [reviewdog](https://github.com/reviewdog/reviewdog#readme), which reports the results as [annotations](https://github.blog/2018-12-14-introducing-check-runs-and-annotations/) in GitHubʼs UI.
+
+You can view the annotations in the *Files changed* tab in your pull request.
+
+![Annotated pull request on GitHub](../media/reviewdog-annotations.png)
+
+---
+
+## Further reading
+
+If you're new to GitHub actions, you can learn the basics in [this overview of using workflows](https://docs.github.com/en/actions/using-workflows/about-workflows).
+
+You can read more about the Vale action in the [official documentation on GitHub](https://github.com/errata-ai/vale-action).
+
+If your repository contains a lot of documentation files, you should consider [running the workflow on the changed files](https://github.com/tj-actions/changed-files#usage).
