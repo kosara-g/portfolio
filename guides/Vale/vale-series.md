@@ -13,15 +13,3 @@ Learn how to install, set up, and run Vale on the command line.
 ## [Vale GitHub action tutorial](./vale-action.md)
 
 Learn how to lint your documentation on GitHub automatically with the Vale GitHub action.
-
-## Understanding the Vale issue report
-
-*Coming soon*.
-
-## Linting and OpenAPI specification with Vale
-
-*Coming soon*.
-
-## Creating custom Vale rules
-
-*Coming soon*.

@@ -1,6 +1,6 @@
 # Vale CLI tutorial
 
-> :information_source: **Before you begin**: this tutorial assumes you are using *macOS*.
+> **Before you begin**: this tutorial assumes you are using *macOS*.
 
 <!-- TOC depthfrom:2 -->
 
@@ -109,9 +109,7 @@ $ cd vale
 $ vale .
 ```
 
-The output from the linter includes information on which package found the issue, which line and character position you should look at, and how to fix it. See an example of what the Vale issue report looks like below.
-
-![Vale issue report](./media/vale-report.png)
+The output from the linter includes information on which package found the issue, which line and character position you should look at, and how to fix it.
 
 ---
 
